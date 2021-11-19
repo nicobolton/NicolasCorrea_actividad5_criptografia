@@ -1,12 +1,14 @@
-from flask import Flask, request, jsonify, Response, render_template
+from flask import Flask, request, render_template
 from flask_pymongo import PyMongo
-from bson import json_util 
 from bson.json_util import loads, dumps
-from bson.objectid import ObjectId
 
 app = Flask(__name__)
 app.config['MONGO_URI']='mongodb://localhost/pythonmongodb' 
 mongo = PyMongo(app)
+
+@app.route('/')
+def index():
+    return "Ruta principal, '/' introducir '/tabla' "
 
 @app.route('/tabla')
 def tabla():
