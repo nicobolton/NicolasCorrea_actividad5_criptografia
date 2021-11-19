@@ -1,11 +1,10 @@
 # NicolasCorrea_actividad5_criptografia
 Actividad N°5
 
+## Comandos para ejecución
 
-Para levantar el la API se utilizo Flask con Python3 en el sistema operativo Linux
-
-## Comandos de instalación:
 # Python 3.8.10
+
 sudo apt update 
 
 sudo apt install software-properties-common
@@ -15,9 +14,10 @@ sudo apt install python3.8.10
 sudo apt-get -y install python3-pip
 
 # Flash
-$  pip3 install flask
 
-##Instalar mongodb
+pip3 install flask
+
+## Instalar mongodb
 
 curl -fsSL https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
 
@@ -30,5 +30,5 @@ sudo apt install mongodb-org
 # Ejecución del servidor Flask
  python3 app.py
 
-En la misma consola debaria salir la ruta donde se ejecutara el servicio
+En la misma consola debaria salir la ruta donde se ejecutara el servicio,
 por dejecto debería ser, http://localhost:3000/tabla
