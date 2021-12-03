@@ -14,20 +14,20 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">Valor 1</th>
-          <th scope="col">Valor 2</th>
-          <th scope="col">Valor 3</th>
-          <th scope="col">Valor 4</th>
+        <th scope="col">nombre PDF</th>
+          <th scope="col">Password</th>
+          <th scope="col">IP</th>
+          <th scope="col">Sistema OP</th>
         </tr>
       </thead>
       <tbody>
         
-      {% for valores in datos %}
+      {% for valores in find %}
       <tr>
-        <th scope="row">{{valores[0]}}</th>
-        <td>{{valores[1]}}</td>
-        <td>{{valores[2]}}</td>
-        <td>{{valores[3]}}</td>
+        <th scope="row">{{valores['nombre']}}</th>
+        <td>{{valores['contrasena']}}</td>
+        <td>{{valores['ip']}}</td>
+        <td>{{valores['s_op']}}</td>
       </tr>
       {% endfor %}
     </tbody>

