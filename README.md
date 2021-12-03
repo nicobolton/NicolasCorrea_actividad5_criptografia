@@ -32,3 +32,7 @@ sudo apt install mongodb-org
 
 En la misma consola debaria salir la ruta donde se ejecutara el servicio,
 por dejecto debería ser, http://localhost:3000/tabla
+
+
+
+video en youtube:https://n9.cl/vrur8
